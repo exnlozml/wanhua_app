@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>查询</title>
+  <link rel="stylesheet" href="/css/search.css">
+</head>
+
+<body>
+  <div class="main" id="app">
+    <div class="ipt">
+      <!-- <span><img src="img/search.png"></span> -->
+      <input type="text" :placeholder="tips" v-model="order">
+    </div>
+    <div class="btn" @click="search">
+      查询
+    </div>
+  </div>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/search.js"></script>
+</body>
+
+</html>

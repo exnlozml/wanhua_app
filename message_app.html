@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物流信息-pc</title>
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="nav">
+      <span id="back">
+        <</span> <span>运单详情
+      </span>
+    </div>
+    <div class="waybill">
+      <div class="tab">
+        <img src="" id="pho">
+        <div class="ul">
+          <ul>
+            <li><span class="lab">交货单号:</span><span class="content"></span></li>
+            <li><span class="lab">车牌号码:</span><span class="content"></span></li>
+            <li><span class="lab">发货地点:</span><span class="content one"></span></li>
+            <li><span class="lab">送达地址:</span><span class="content one"></span></li>
+            <li><span class="lab">司机名称:</span><span class="content"></span></li>
+            <li><span class="lab">司机电话:</span><span class="content"></span></li>
+            <li><span class="lab">离厂时间:</span><span class="content"></span></li>
+            <li><span class="lab">预计送达:</span><span class="content"></span></li>
+            <li><span class="lab">产品名称:</span><span class="content"></span></li>
+            <li><span class="lab">数量:</span><span class="content"></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="logistics">
+      <div class="message">
+        <div class="bar">
+          <span>物流节点</span>
+          <div class="map">查看物流地图</div>
+        </div>
+        <div id="message">
+          <ul>
+            <li id="first"><img src="img/物流节点_当前.png"><span class="site"></span><span class="date"></span></li>
+          </ul>
+          <div id="line">
+            <div id="top"></div>
+            <div id="bottom"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div id="map">
+    <span title="关闭地图">close</span>
+    <iframe frameborder=0></iframe>
+  </div>
+  <!-- <div class="bg"></div> -->
+  <script src="js/load.js"></script>
+</body>
+
+</html>
