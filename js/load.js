@@ -232,5 +232,5 @@ closeMap.onclick = function () {
 // 返回查询页
 var back = document.querySelector('#back');
 back.onclick = function () {
-  location.href = '/search.html';
+  location.href = './search.html';
 }
