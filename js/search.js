@@ -28,8 +28,8 @@ var vm = new Vue({
       if (this.reg.test(this.order)) {
         sessionStorage.setItem('test', JSON.stringify(this.order));
         location.href = '/message_app.html?order_no=' + this.order;
-      } else if(this.reg8.test(this.order)){
-        var no ='00' + this.order;
+      } else if (this.reg8.test(this.order)) {
+        var no = '00' + this.order;
         location.href = '/message_app.html?order_no=' + no;
       } else {
         this.order = '';
