@@ -44,7 +44,6 @@ function putData(callback) {
         alert('单号不存在!');
         location.href = '/search.html';
       }
-     
     }
   }
   // if (Mode != undefined) {
