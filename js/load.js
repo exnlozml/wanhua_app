@@ -49,7 +49,7 @@ function putData(callback) {
   // if (Mode != undefined) {
   //   xmlHttp.open("get", "https://lmsqas.whchem.com/myscm/getTransportation?delivery_order_no=" + No + "&mode=" + Mode, true);
   // } else {
-  xmlHttp.open("get", "https://lmsqas.whchem.com/myscm/getTransportation?delivery_order_no=" + No, true);
+  xmlHttp.open("get", "https://lms.whchem.com/myscm/getTransportation?delivery_order_no=" + No, true);
   // }
   xmlHttp.send();
 }
