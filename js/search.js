@@ -15,6 +15,7 @@ function goPAGE() {
   resetFontSize();
 }
 goPAGE();
+
 var vm = new Vue({
   el: '#app',
   data: {
@@ -22,19 +23,33 @@ var vm = new Vue({
     reg: /^[0-9]{10}$/,
     reg8: /^[0-9]{8}$/,
     tips: "您可以输运单号进行查询",
+    mess: '',
+    isShow: false
   },
   methods: {
     search: function () {
       if (this.reg.test(this.order)) {
-        sessionStorage.setItem('test', JSON.stringify(this.order));
-        location.href = './message_app.html?order_no=' + this.order;
+        this.mess = 'http://30k7192928.picp.vip/message_app.html?order_no=' + this.order;
+        this.isShow = true;
       } else if (this.reg8.test(this.order)) {
         var no = '00' + this.order;
-        location.href = './message_app.html?order_no=' + no;
+        this.mess = 'http://30k7192928.picp.vip/message_app.html?order_no=' + no;
+        this.isShow = true;
       } else {
         this.order = '';
         this.tips = "请输入10位运单号"
       }
     }
+  },
+  mounted() {
+    window.addEventListener('message', messageEvent => {
+      this.order = '';
+      var data = messageEvent.data;
+      console.log(data);
+      if (data == 'close') {
+        this.isShow = false;
+        console.log('已关闭');
+      }
+    }, false);
   }
 });

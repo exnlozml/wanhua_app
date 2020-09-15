@@ -9,13 +9,19 @@
 </head>
 
 <body>
-  <div class="main" id="app">
-    <div class="ipt">
-      <!-- <span><img src="img/search.png"></span> -->
-      <input type="text" :placeholder="tips" v-model="order">
+  <div id="app">
+    <div class="main" >
+      <div class="ipt">
+        <!-- <span><img src="img/search.png"></span> -->
+        <input type="text" :placeholder="tips" v-model="order">
+      </div>
+      <div class="btn" @click="search">
+        查询
+      </div>
+      <div>{{isShow}}</div>
     </div>
-    <div class="btn" @click="search">
-      查询
+    <div id="message" v-show="isShow">
+      <iframe frameborder="0" :src="mess"></iframe>
     </div>
   </div>
   <!-- 开发环境版本，包含了有帮助的命令行警告 -->

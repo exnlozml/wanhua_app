@@ -42,7 +42,6 @@ function putData(callback) {
         callback(dd);
       } else {
         alert('单号不存在!');
-        location.href = '/search.html';
       }
     }
   }
@@ -106,7 +105,7 @@ function proData(data) {
 
   // 判断节点数量
   var we;
-  for (var e = 0; e < 8; e++) {
+  for (var e = 0; e < 9; e++) {
     if (getData[0].detail[e]) {
 
     } else {
@@ -239,5 +238,13 @@ closeMap.onclick = function () {
 // 返回查询页
 var back = document.querySelector('#back');
 back.onclick = function () {
-  location.href = './search.html';
+  send();
+  // location.href = './search.html';
 }
+
+// 向查询页面发送关闭iframe数据
+function send() {
+  var data = 'close';
+  parent.postMessage(data, 'http://30k7192928.picp.vip/search.html'); // 触发跨域子页面的messag事件
+}
+
