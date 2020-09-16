@@ -279,6 +279,6 @@ back.onclick = function () {
 // 向查询页面发送关闭iframe数据
 function send() {
   var data = 'close';
-  parent.postMessage(data, 'http://127.0.0.1:5500/search.html'); // 触发跨域子页面的messag事件
+  parent.postMessage(data, 'http://30k7192928.picp.vip/search.html'); // 触发跨域子页面的messag事件
 }
 

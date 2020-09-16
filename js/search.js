@@ -29,11 +29,11 @@ var vm = new Vue({
   methods: {
     search: function () {
       if (this.reg.test(this.order)) {
-        this.mess = 'http://127.0.0.1:5500/message_app.html?order_no=' + this.order;
+        this.mess = 'http://30k7192928.picp.vip/message_app.html?order_no=' + this.order;
         this.isShow = true;
       } else if (this.reg8.test(this.order)) {
         var no = '00' + this.order;
-        this.mess = 'http://127.0.0.1:5500/message_app.html?order_no=' + no;
+        this.mess = 'http://30k7192928.picp.vip/message_app.html?order_no=' + no;
         this.isShow = true;
       } else {
         this.order = '';
