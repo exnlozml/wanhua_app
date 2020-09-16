@@ -41,8 +41,8 @@ function putData(callback) {
       if(dd != '[]') {
         callback(dd);
       } else {
-        alert('单号不存在!');
-        location.href = '/search.html';
+        // alert('单号不存在!');
+        // location.href = '/search.html';
       }
     }
   }
@@ -106,7 +106,7 @@ function proData(data) {
 
   // 判断节点数量
   var we;
-  for (var e = 0; e < 8; e++) {
+  for (var e = 0; e < 9; e++) {
     if (getData[0].detail[e]) {
 
     } else {
@@ -237,7 +237,7 @@ closeMap.onclick = function () {
 }
 
 // 返回查询页
-var back = document.querySelector('#back');
-back.onclick = function () {
-  location.href = './search.html';
-}
+// var back = document.querySelector('#back');
+// back.onclick = function () {
+//   location.href = './search.html';
+// }
