@@ -38,7 +38,7 @@ function putData(callback) {
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
       var dd = xmlHttp.responseText;
-      if(dd != '[]') {
+      if (dd != '[]') {
         callback(dd);
       } else {
         // alert('单号不存在!');
@@ -68,6 +68,38 @@ function proData(data) {
   contents[6].innerHTML = getData[0].leave_factory_time; // 离厂时间
   contents[7].innerHTML = getData[0].re_customer_time; // 预计到达
   contents[9].innerHTML = getData[0].qty + ' 吨'; // 数量
+
+  // 处理发货和送货地址长度超出一行（21字）
+  (function () {
+    var ul_height = document.querySelector('.ul');
+    var li1 = document.querySelector('.ul li:nth-child(3)');
+    var li2 = document.querySelector('.ul li:nth-child(4)');
+    if (contents[2].innerHTML != 'undefined' && contents[3].innerHTML != 'undefined') {
+      if (getData[0].place_adress.length > 21) {
+        li1.style.marginBottom = '0.575rem';
+        ul_height.style.height = '5.925rem';
+        if (getData[0].customer_address.length > 21) {
+          li2.style.marginBottom = '0.575rem';
+          ul_height.style.height = '6.3rem';
+        }
+      } else {
+        if (getData[0].customer_address.length > 21) {
+          li2.style.marginBottom = '0.575rem';
+          ul_height.style.height = '5.925rem';
+        }
+      }
+    } else if (contents[2].innerHTML != 'undefined') {
+      if (getData[0].place_adress.length > 21) {
+        li1.style.marginBottom = '0.575rem';
+        ul_height.style.height = '5.925rem';
+      }
+    } else if (contents[3].innerHTML != 'undefined') {
+      if (getData[0].customer_address.length > 21) {
+        li2.style.marginBottom = '0.575rem';
+        ul_height.style.height = '5.925rem';
+      }
+    }
+  })();
 
   // 显示产品名称
   if (getData[0].product_name) {
@@ -181,8 +213,8 @@ function proData(data) {
         trs.innerHTML = '<img src="img/物流节点_过去.png"><span class="site">' + sites[cc].node + '</span><span class="date">' + sites[cc].nodeTime + '</span>';
         li.appendChild(trs);
       }
-    } else if(flag == true && tag == 0) {
-      for(var cr = 0 ; cr<we;cr++) {
+    } else if (flag == true && tag == 0) {
+      for (var cr = 0; cr < we; cr++) {
         var trs = document.createElement('li');
         trs.innerHTML = '<img src="img/物流节点_过去.png"><span class="site">' + getData[0].detail[cr].node + '</span><span class="date">' + getData[0].detail[cr].nodeTime + '</span>';
         li.appendChild(trs);
