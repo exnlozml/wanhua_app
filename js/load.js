@@ -76,21 +76,26 @@ function proData(data) {
     var li2 = document.querySelector('.ul li:nth-child(4)');
     if (contents[2].innerHTML != 'undefined' && contents[3].innerHTML != 'undefined') {
       if (getData[0].place_adress.length > 21) {
+        li1.style.marginBottom = '0.575rem';
         ul_height.style.height = '5.925rem';
         if (getData[0].customer_address.length > 21) {
-          ul_height.style.height = '6.3rem';
+        li2.style.marginBottom = '0.575rem';
+        ul_height.style.height = '6.3rem';
         }
       } else {
         if (getData[0].customer_address.length > 21) {
+        li2.style.marginBottom = '0.575rem';
           ul_height.style.height = '5.925rem';
         }
       }
     } else if (contents[2].innerHTML != 'undefined') {
       if (getData[0].place_adress.length > 21) {
+        li1.style.marginBottom = '0.575rem';
         ul_height.style.height = '5.925rem';
       }
     } else if (contents[3].innerHTML != 'undefined') {
       if (getData[0].customer_address.length > 21) {
+        li2.style.marginBottom = '0.575rem';
         ul_height.style.height = '5.925rem';
       }
     }
