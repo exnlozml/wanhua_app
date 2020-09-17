@@ -11,25 +11,6 @@ function tran(state) {
 }
 
 var No = getNo().order_no; // 送货单号
-// var Mode = getNo().mode; // 第二种节点的参数
-// // 第一次请求建立连接
-// (function testCon(callback) {
-//   // 发送异步请求
-//   var xmlHttp = new XMLHttpRequest();
-//   xmlHttp.onreadystatechange = function () {
-//     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-//       console.log('第一次请求建立连接');
-//       putData(proData);
-//     }
-//   }
-//   if (Mode != undefined) {
-//     xmlHttp.open("get", "https://lmsqas.whchem.com/myscm/getTransportation?delivery_order_no=" + No + "&mode=" + Mode, true);
-//   } else {
-//     xmlHttp.open("get", "https://lmsqas.whchem.com/myscm/getTransportation?delivery_order_no=" + No, true);
-//   }
-
-//   xmlHttp.send();
-// })();
 
 // 第二次ajax请求获取数据
 function putData(callback) {
@@ -41,8 +22,8 @@ function putData(callback) {
       if (dd != '[]') {
         callback(dd);
       } else {
-        // alert('单号不存在!');
-        // location.href = '/search.html';
+        alert('单号不存在!');
+        location.href = '/search.html';
       }
     }
   }
@@ -79,12 +60,12 @@ function proData(data) {
         li1.style.marginBottom = '0.575rem';
         ul_height.style.height = '5.925rem';
         if (getData[0].customer_address.length > 21) {
-        li2.style.marginBottom = '0.575rem';
-        ul_height.style.height = '6.3rem';
+          li2.style.marginBottom = '0.575rem';
+          ul_height.style.height = '6.3rem';
         }
       } else {
         if (getData[0].customer_address.length > 21) {
-        li2.style.marginBottom = '0.575rem';
+          li2.style.marginBottom = '0.575rem';
           ul_height.style.height = '5.925rem';
         }
       }
