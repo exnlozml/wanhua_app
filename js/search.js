@@ -37,19 +37,18 @@ var vm = new Vue({
         this.isShow = true;
       } else {
         this.order = '';
-        this.tips = "请输入10位运单号"
+        this.tips = "请输入10位运单号";
       }
     }
   },
   mounted() {
     window.addEventListener('message', messageEvent => {
-      this.order = '';
+      window.location.reload();
       var data = messageEvent.data;
-      console.log(data);
-      if (data == 'close') {
+      if (data[0] == 'close') {
         this.isShow = false;
-        console.log('已关闭');
       }
-    }, false);
+      this.order = data[1];
+    });
   }
 });

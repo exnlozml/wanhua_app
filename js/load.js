@@ -69,7 +69,7 @@ function proData(data) {
   contents[9].innerHTML = getData[0].qty + ' 吨'; // 数量
 
   // 处理发货和送货地址长度超出一行（21字）
-  (function() {
+  (function () {
     var ul_height = document.querySelector('.ul');
     var li1 = document.querySelector('.ul li:nth-child(3)');
     var li2 = document.querySelector('.ul li:nth-child(4)');
@@ -100,8 +100,6 @@ function proData(data) {
     }
   })();
 
-
-
   // 显示产品名称
   if (getData[0].product_name) {
     var result = getData[0].product_name.split(";");
@@ -123,23 +121,17 @@ function proData(data) {
     }
   }
 
-  // 判断状态图片
-  var sta = tran(getData[0].transportstatus);
-  // 物流节点左侧直线
-  var tline = document.querySelector('#top');
-  var line = document.querySelector('#bottom');
+  
 
   // 渲染当前节点数据
   var first_li_site = document.querySelector('#first .site');
   var first_li_date = document.querySelector('#first .date');
   first_li_site.innerHTML = getData[0].detail[0].node;
   first_li_date.innerHTML = getData[0].detail[0].nodeTime;
-  // 上半部分粗线
-  tline.style.display = 'block';
 
   // 判断节点数量
   var we;
-  for (var e = 0; e < 9; e++) {
+  for (var e = 0; e < 10; e++) {
     if (getData[0].detail[e]) {
 
     } else {
@@ -164,85 +156,41 @@ function proData(data) {
     li.appendChild(last);
   }
 
-  // 根据第一还是第二种节点来选择是否添加运输中节点
+  // 遍历节点
+  // 当前节点
   var arrive = document.querySelector('#first');
   var a_site = arrive.querySelector('.site');
   var a_date = arrive.querySelector('.date');
   var li = document.querySelector('#message ul');
-  if (getData[0].mode == 2) {
-    // 第二种节点 不添加运输中节点
-    a_site.innerHTML = getData[0].detail[0].node;
-    a_date.innerHTML = getData[0].detail[0].nodeTime;
-    addEd();
-    addSt();
-  } else {
-    // 第一种节点
-    // 判断是否有离厂
-    var tag;
-    var flag;
-    for (var c = 0; c < e; c++) {
-      if (getData[0].detail[c].node.indexOf("离厂") != -1) {
-        flag = true;
-        // 判断离厂节点是否为当前节点
-        if (c == 0) {
-          tag = c;
-          // 如果是,则将当前节点改为运输中,并在后面加一个离厂节点
-          a_site.innerHTML = '运输中';
-          a_date.innerHTML = '';
-        } else {
-          tag = c;
-          // 否则,则将detail中给第一个对象的数据渲染到#first上
-          a_site.innerHTML = getData[0].detail[0].node;
-          a_date.innerHTML = getData[0].detail[0].nodeTime;
-          we++;
-        }
-      }
-    }
-
-    // 遍历已到达节点
-    if (flag == true && tag == 1) {
-      // 如果存在离厂节点且有到达节点
-      // 向detia数组对象中添加运输中对象
-      var sites = getData[0].detail;
-      var tarning = {
-        node: "运输中",
-        nodeTime: ""
-      };
-      sites.splice(tag, 0, tarning);
-      for (var cc = 1; cc < we; cc++) {
-        var trs = document.createElement('li');
-        trs.innerHTML = '<img src="img/物流节点_过去.png"><span class="site">' + sites[cc].node + '</span><span class="date">' + sites[cc].nodeTime + '</span>';
-        li.appendChild(trs);
-      }
-    } else if (flag == true && tag == 0) {
-      for (var cr = 0; cr < we; cr++) {
-        var trs = document.createElement('li');
-        trs.innerHTML = '<img src="img/物流节点_过去.png"><span class="site">' + getData[0].detail[cr].node + '</span><span class="date">' + getData[0].detail[cr].nodeTime + '</span>';
-        li.appendChild(trs);
-      }
-      we++;
-    } else {
-      addEd();
-    }
-    addSt();
-  }
+  a_site.innerHTML = getData[0].detail[0].node;
+  a_date.innerHTML = getData[0].detail[0].nodeTime;
+  // 已到达节点
+  addEd();
+  // 起始节点
+  addSt();
 
   // 显示上半部分直线
   var top = document.querySelector('#top');
   top.style.visibility = 'visible';
+
   // 显示当前节点的图片
   var im = document.querySelector('#first img');
   im.style.visibility = 'visible';
-  // 不同设备中的节点数据渲染
-  var img = document.querySelector('.tab img'); // 当前节点图片
-  var gps = document.querySelector('#map iframe') // iframe
-  // app下半部分直线
+  
+  
+  // 下半部分直线
+  var line = document.querySelector('#bottom');
   line.style.height = 1.1 + 0.79 * (we - 2) + "rem";
+
   // 判断运输状态
+  var img = document.querySelector('.tab img'); // 运输状态图片
+  var sta = tran(getData[0].transportstatus); // 状态数据
   img.src = "img/运输状态_" + sta + "_app.png";
   img.style.visibility = 'visible';
+
   // 手机地图
-  gps.src = "https://lmsqas.whchem.com/myscm/GPSGate?toId=" + getData[0].no + "&client=mobile";
+  var gps = document.querySelector('#map iframe') // iframe
+  gps.src = "https://lms.whchem.com/myscm/GPSGate?toId=" + getData[0].no + "&client=mobile";
 
   // 查看地图按钮可用
   var mapBtn = document.querySelector('.map');
@@ -278,7 +226,9 @@ back.onclick = function () {
 
 // 向查询页面发送关闭iframe数据
 function send() {
-  var data = 'close';
+  var data = new Array();
+  data[0] = 'close';
+  data[1] = document.querySelector('.ul .content').innerHTML;
   parent.postMessage(data, 'http://30k7192928.picp.vip/search.html'); // 触发跨域子页面的messag事件
 }
 

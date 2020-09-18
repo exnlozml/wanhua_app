@@ -67,8 +67,12 @@ span img {
   position: fixed;
   left: 0;
   top: 0;
-  /* background: #000; */
   z-index: 2;
+}
+
+/* 隐藏滚动条chrome */
+#message::-webkit-scrollbar {
+  display: none
 }
 
 #message iframe {
