@@ -15,7 +15,6 @@ function goPAGE() {
   resetFontSize();
 }
 goPAGE();
-
 var vm = new Vue({
   el: '#app',
   data: {
@@ -28,13 +27,18 @@ var vm = new Vue({
   },
   methods: {
     search: function () {
+      that = this;
       if (this.reg.test(this.order)) {
         this.mess = 'http://30k7192928.picp.vip/message_app.html?order_no=' + this.order;
-        this.isShow = true;
+        setTimeout(function() {
+          that.isShow = true;
+        }, 500);
       } else if (this.reg8.test(this.order)) {
         var no = '00' + this.order;
         this.mess = 'http://30k7192928.picp.vip/message_app.html?order_no=' + no;
-        this.isShow = true;
+        setTimeout(function() {
+          that.isShow = true;
+        }, 500);
       } else {
         this.order = '';
         this.tips = "请输入10位运单号";
@@ -43,7 +47,7 @@ var vm = new Vue({
   },
   mounted() {
     window.addEventListener('message', messageEvent => {
-      window.location.reload();
+      // window.location.reload();
       var data = messageEvent.data;
       if (data[0] == 'close') {
         this.isShow = false;
